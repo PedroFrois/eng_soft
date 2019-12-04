@@ -466,6 +466,7 @@ def reservaQuarto_create(request):
     context['tipo'] = 'reservaQuartos'
     if request.method == 'POST':
         form = ReservaQuartoForm(request.POST)
+        print(form)
         if form.is_valid():
             reservaQuarto = form.save()
             return redirect('reservaQuarto_edit', reservaQuarto.id)

@@ -103,6 +103,7 @@ class ReservaCarro(models.Model):
 	data_inicio		= models.DateField(verbose_name='Data de Início')
 	data_fim		= models.DateField(verbose_name='Data de Fim')
 	carro			= models.ForeignKey('Carro', on_delete=models.CASCADE)
+	cliente			= models.ForeignKey('Cliente', on_delete=models.CASCADE,  default=None, null=True)
 
 	def __str__(self):
 		return str(self.codigo)
@@ -112,15 +113,16 @@ class ReservaQuarto(models.Model):
 	codigo			= models.IntegerField(verbose_name='Codigo')
 	data_reserva	= models.DateField(verbose_name='Data de Reserva')
 	data_inicio		= models.DateField(verbose_name='Data de Início')
-	num_noites		= models.DateField(verbose_name='Quantidade de Noites')
+	num_noites		= models.IntegerField(verbose_name='Quantidade de Noites')
 	quarto			= models.ForeignKey('Quarto', on_delete=models.CASCADE)
+	cliente			= models.ForeignKey('Cliente', on_delete=models.CASCADE,  default=None, null=True)
 
 	def __str__(self):
 		return str(self.codigo)
 
 
 class ReservaPacote(models.Model):
-	reserva_carro	= models.OneToOneField(verbose_name='Reserva do Carrro', to=ReservaCarro, on_delete=models.CASCADE)
+	reserva_carro	= models.OneToOneField(verbose_name='Reserva do Carro', to=ReservaCarro, on_delete=models.CASCADE)
 	reserva_quarto	= models.OneToOneField(verbose_name='Reserva do Quarto', to=ReservaQuarto,on_delete=models.CASCADE)
 
 	def __str__(self):

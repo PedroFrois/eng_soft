@@ -89,9 +89,9 @@
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'carro_delete' carro.id %}" >Deletar Carro</a>
         {% elif tipo == 'reservaCarros' %}
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'reservaCarro_delete' reservaCarro.id %}" >Deletar Reserva de Carro</a>
-        {% elif tipo == 'reservaQuarto' %}
+        {% elif tipo == 'reservaQuartos' %}
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'reservaQuarto_delete' reservaQuarto.id %}" >Deletar Reserva de Quarto</a>
-        {% elif tipo == 'reservaPacote' %}
+        {% elif tipo == 'reservaPacotes' %}
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'reservaPacote_delete' reservaPacote.id %}" >Deletar Reserva de Pacote</a>
         {% else %}
             Erro!
