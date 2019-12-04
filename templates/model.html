@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+  <div class="jumbotron" style="background-color: whitesmoke !important; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+  <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-none p-3 mb-5 bg-white rounded">
+    Área de
+      {% if tipo == 'pessoas' %}
+          Pessoas
+      {% elif tipo == 'clientes' %}
+          Clientes
+      {% elif tipo == 'hoteis' %}
+          Hoteis
+      {% elif tipo == 'tipoQuartos' %}
+          Tipos de Quarto
+      {% elif tipo == 'quartos' %}
+          Quartos
+      {% elif tipo == 'locadoras' %}
+          Locadoras
+      {% elif tipo == 'carros' %}
+          Carros
+      {% elif tipo == 'reservaCarros' %}
+          Reservas de Carro
+      {% elif tipo == 'reservaQuartos' %}
+          Reservas de Quarto
+      {% elif tipo == 'reservaPacotes' %}
+          Reservas de Pacote
+      {% else %}
+          Erro!
+      {% endif %}
+  </h1>
+  {% if tipo == 'pessoas' %}
+    
+    <div class="container">
+      <h3 class="text-center display-6">Pessoas</h3>
+      <p class="text-center">Gerencie aqui as Pessoas do Sistema</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'pessoa_create' %}">Cadastrar Pessoa</a><br>
+        <a class="btn btn-outline-info" href="{% url 'pessoa_view' %}">Listar Pessoas</a>
+    </ul>
+
+  {% elif tipo == 'clientes' %}
+    
+    <div class="container">
+      <h3 class="text-center display-6">Cliente</h3>
+      <p class="text-center">Gerencie aqui os Clientes do Sistema</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'cliente_create' %}">Cadastrar Cliente</a><br>
+        <a class="btn btn-outline-info" href="{% url 'cliente_view' %}">Listar Clientes</a>
+    </ul>
+
+  {% elif tipo == 'hoteis' %}
+    <div class="container">
+      <h3 class="text-center display-6">Hotéis</h3>
+      <p class="text-center">Gerencie aqui os Hotéis do Sistema</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+      <a class="btn btn-outline-success btn-custom" href="{% url 'hotel_create' %}">Cadastrar Hotel</a><br>
+      <a class="btn btn-outline-info" href="{% url 'hotel_view' %}">Listar Hotéis</a>
+    </ul>
+
+  {% elif tipo == 'tipoQuartos' %}
+    <div class="container">
+      <h3 class="text-center display-6">Tipos de Quartos</h3>
+      <p class="text-center">Gerencie aqui os Tipos de Quartos dos Hotéis</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'tipoQuarto_create' %}">Cadastrar Tipo de Quarto</a><br>
+        <a class="btn btn-outline-info" href="{% url 'tipoQuarto_view' %}">Listar Tipos de Quartos</a>
+    </ul>
+
+  {% elif tipo == 'quartos' %}
+    <div class="container">
+      <h3 class="text-center display-6">Quartos</h3>
+      <p class="text-center">Gerencie aqui os Quartos dos Hotéis</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'quarto_create' %}">Cadastrar Quartos</a><br>
+        <a class="btn btn-outline-info" href="{% url 'quarto_view' %}">Listar Quartos</a>
+    </ul>
+    
+  {% elif tipo == 'locadoras' %}
+    <div class="container">
+      <h3 class="text-center display-6">Locadoras</h3>
+      <p class="text-center">Gernecie aqui as Locadoras do Sistema</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'locadora_create' %}">Cadastrar Locadora</a><br>
+        <a class="btn btn-outline-info" href="{% url 'locadora_view' %}">Listar Locadoras</a>
+    </ul>
+    
+  {% elif tipo == 'carros' %}
+    <div class="container">
+      <h3 class="text-center display-6">Carros</h3>
+      <p class="text-center">Gerencie aqui os Carros do Sistema</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'carro_create' %}">Cadastrar Carro</a><br>
+        <a class="btn btn-outline-info" href="{% url 'carro_view' %}">Listar Carros</a>
+    </ul>
+
+  {% elif tipo == 'reservaCarros' %}
+    <div class="container">
+      <h3 class="text-center display-6">Reservas de Carros</h3>
+      <p class="text-center">Venha fazer sua reserva hoje!!</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'reservaCarro_create' %}" style="background-color: white;">Criar</a><br>
+        <a class="btn btn-outline-info" href="{% url 'reservaCarro_view' %}"style="background-color: white;">Listar</a>
+    </ul>
+
+  {% elif tipo == 'reservaQuartos' %}
+    <div class="container">
+      <h3 class="text-center display-6">Reservas de Quartos</h3>
+      <p class="text-center">Venha fazer sua reserva hoje!!</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'reservaQuarto_create' %}" style="background-color: white;"s>Criar</a><br>
+        <a class="btn btn-outline-info" href="{% url 'reservaQuarto_view' %}" style="background-color: white;">Listar</a>
+    </ul>
+
+  {% elif tipo == 'reservaPacotes' %}
+    <div class="container">
+      <h3 class="text-center display-6">Reservas de Pacotes</h3>
+      <p class="text-center">Venha fazer sua reserva hoje!!</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'reservaPacote_create' %}" style="background-color: white;"s>Criar</a><br>
+        <a class="btn btn-outline-info" href="{% url 'reservaPacote_view' %}" style="background-color: white;">Listar</a>
+    </ul>
+    
+  {% else %}
+      Erro!
+  {% endif %}
+</div>
+</body>
+
+{% endblock %}

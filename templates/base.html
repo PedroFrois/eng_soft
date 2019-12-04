@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" a href="{% static 'css/custom.css' %}"/>
+    <link rel="stylesheet" a href="{% static 'css/bootstrap.css' %}"/>
+    <title>Sistema de Locações</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-info" style="background-color:darkslateblue !important; font-family: Verdana, Geneva, Tahoma, sans-serif; font: white;">
+  <div class="container" >
+    <a class="navbar-brand" href="{% url 'home' %}">LocaFácil</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample07">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'pessoa' %}">Pessoas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cliente' %}">Clientes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'hotel' %}">Hotéis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'quarto' %}">Tipos de Quarto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'quarto' %}">Quartos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'locadora' %}">Locadoras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'carro' %}">Carros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reservaCarro' %}">Reservas de Carro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reservaQuarto' %}">Reservas de Quarto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reservaPacote' %}">Reservas de Pacotes</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    {% block content %}
+
+
+    {% endblock %}
+
+</body>
+
+</html>

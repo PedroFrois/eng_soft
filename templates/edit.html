@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <style>
+        .gone{
+            display: none;
+        }
+    </style>  
+  <head>
+    <meta charset="utf-8">
+    <title>
+        {% if tipo == 'pessoas' %}
+            Pessoas
+        {% elif tipo == 'clientes' %}
+            Clientes
+        {% elif tipo == 'hoteis' %}
+            Hoteis
+        {% elif tipo == 'tipoQuartos' %}
+            Tipos de Quarto
+        {% elif tipo == 'quartos' %}
+            Quartos
+        {% elif tipo == 'locadoras' %}
+            Locadoras
+        {% elif tipo == 'carros' %}
+            Carros
+        {% elif tipo == 'reservaCarros' %}
+            Reservas de Carro
+        {% elif tipo == 'reservaQuartos' %}
+            Reservas de Quarto
+        {% elif tipo == 'reservaPacotes' %}
+            Reservas de Pacote
+        {% else %}
+            Erro!
+        {% endif %}
+    </title>
+  </head>
+  <body>
+    <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded" style="background-color: whitesmoke !important; font-family:Verdana, Geneva, Tahoma, sans-serif;">
+      Visualizar
+        {% if tipo == 'pessoas' %}
+            Pessoas
+        {% elif tipo == 'clientes' %}
+            Clientes
+        {% elif tipo == 'hoteis' %}
+            Hoteis
+        {% elif tipo == 'tipoQuartos' %}
+            Tipos de Quarto
+        {% elif tipo == 'quartos' %}
+            Quartos
+        {% elif tipo == 'locadoras' %}
+            Locadoras
+        {% elif tipo == 'carros' %}
+            Carros
+        {% elif tipo == 'reservaCarros' %}
+            Reservas de Carro
+        {% elif tipo == 'reservaQuartos' %}
+            Reservas de Quarto
+        {% elif tipo == 'reservaPacotes' %}
+            Reservas de Pacote
+        {% else %}
+            Erro!
+        {% endif %}
+    </h1>
+    <form class="container col-6" method="post" style="font-family:Verdana, Geneva, Tahoma, sans-serif;">
+      {% csrf_token %}
+      {{ form| crispy }}
+      <input class="btn btn-warning btn-block" type="submit" value="Editar">
+        <br>
+        {% if tipo == 'pessoas' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'pessoa_delete' pessoa.id %}" >Deletar Pessoa</a>
+        {% elif tipo == 'clientes' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'cliente_delete' cliente.id %}" >Deletar Cliente</a>
+        {% elif tipo == 'hoteis' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'hotel_delete' hotel.id %}" >Deletar Hotel</a>
+        {% elif tipo == 'tipoQuartos' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'tipoQuarto_delete' tipoQuarto.id %}" >Deletar Tipo de Quarto</a>
+        {% elif tipo == 'quartos' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'quarto_delete' quarto.id %}" >Deletar Quarto</a>
+        {% elif tipo == 'locadoras' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'locadora_delete' locadora.id %}" >Deletar Locadora</a>
+        {% elif tipo == 'carros' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'carro_delete' carro.id %}" >Deletar Carro</a>
+        {% elif tipo == 'reservaCarros' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'reservaCarro_delete' reservaCarro.id %}" >Deletar Reserva de Carro</a>
+        {% elif tipo == 'reservaQuarto' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'reservaQuarto_delete' reservaQuarto.id %}" >Deletar Reserva de Quarto</a>
+        {% elif tipo == 'reservaPacote' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'reservaPacote_delete' reservaPacote.id %}" >Deletar Reserva de Pacote</a>
+        {% else %}
+            Erro!
+        {% endif %}
+    </form>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <!-- <script>
+        var conditional_fields = $("div.outro_bairro");
+        conditional_fields.hide();
+            
+        $("#id_bairro").change(function() {
+            // console.log($(this).children("option:selected").val());
+            if ($(this).children("option:selected").val() == 'Outros') {
+                // console.log('entrei')
+                document.getElementById("id_outro_bairro").classList.remove('gone');
+                // conditional_fields.hide();
+            } else {
+                document.getElementById("id_outro_bairro").classList.add('gone');
+                // conditional_fields.show();
+            }
+        });
+  </script> -->
+</html>
+{% endblock %}

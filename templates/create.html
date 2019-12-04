@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <style>
+    .gone{
+        display: none;
+    }
+    </style>
+  <head>
+    <meta charset="utf-8">
+    <title>
+        {% if tipo == 'pessoas' %}
+            Pessoas
+        {% elif tipo == 'clientes' %}
+            Clientes
+        {% elif tipo == 'hoteis' %}
+            Hoteis
+        {% elif tipo == 'tipoQuartos' %}
+            Tipos de Quarto
+        {% elif tipo == 'quartos' %}
+            Quartos
+        {% elif tipo == 'locadoras' %}
+            Locadoras
+        {% elif tipo == 'carros' %}
+            Carros
+        {% elif tipo == 'reservaCarros' %}
+            Reservas de Carro
+        {% elif tipo == 'reservaQuartos' %}
+            Reservas de Quarto
+        {% elif tipo == 'reservaPacotes' %}
+            Reservas de Pacote
+        {% else %}
+            Erro!
+        {% endif %}
+    </title>
+  </head>
+  <body>
+    <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-pink rounded" style="background-color:white !important; font-family:Verdana, Geneva, Tahoma, sans-serif;">
+      Cadastrar
+        {% if tipo == 'pessoas' %}
+            Nova Pessoa
+        {% elif tipo == 'clientes' %}
+            Novo Cliente
+        {% elif tipo == 'hoteis' %}
+            Novo Hotel
+        {% elif tipo == 'tipoQuartos' %}
+            Novo Tipo de Quarto
+        {% elif tipo == 'quartos' %}
+            Novo Quarto
+        {% elif tipo == 'locadoras' %}
+            Nova Locadora
+        {% elif tipo == 'carros' %}
+            Novo Carro
+        {% elif tipo == 'reservaCarros' %}
+            Nova Reserva de Carro
+        {% elif tipo == 'reservaQuartos' %}
+            Nova Reserva de Quarto
+        {% elif tipo == 'reservaPacotes' %}
+            Nova Reserva de Pacote
+        {% else %}
+            Erro!
+        {% endif %}
+    </h1>
+    <form class="container col-6" method="post" style="font-family:Verdana, Geneva, Tahoma, sans-serif;">
+      {% csrf_token %}
+      {{ form| crispy }}
+      <input class="btn btn-outline-success btn-block" type="submit" value="Submeter">
+  </form>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <!-- <script>
+        var conditional_fields = $("div.outro_bairro");
+        conditional_fields.hide();
+            
+        $("#id_bairro").change(function() {
+            // console.log($(this).children("option:selected").val());
+            if ($(this).children("option:selected").val() == 'Outros') {
+                // console.log('entrei')
+                document.getElementById("id_outro_bairro").classList.remove('gone');
+                // conditional_fields.hide();
+            } else {
+                document.getElementById("id_outro_bairro").classList.add('gone');
+                // conditional_fields.show();
+            }
+        });
+  </script> -->
+</html>
+{% endblock %}

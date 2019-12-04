@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% if tipo == 'pessoas' %}
+          Pessoas
+      {% elif tipo == 'clientes' %}
+          Clientes
+      {% elif tipo == 'hoteis' %}
+          Hoteis
+      {% elif tipo == 'tipoQuartos' %}
+          Tipos de Quarto
+      {% elif tipo == 'quartos' %}
+          Quartos
+      {% elif tipo == 'locadoras' %}
+          Locadoras
+      {% elif tipo == 'carros' %}
+          Carros
+      {% elif tipo == 'reservaCarros' %}
+          Reservas de Carro
+      {% elif tipo == 'reservaQuartos' %}
+          Reservas de Quarto
+      {% elif tipo == 'reservaPacotes' %}
+          Reservas de Pacote
+      {% else %}
+          Erro!
+      {% endif %}
+    </title>
+    <style>
+      h1 {
+        background-color: whitesmoke !important; font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+      {% if tipo == 'pessoas' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Pessoas</h1>
+            <a href="{% url 'pessoa_create' %}" class="btn btn-secondary" id="menu">Cadastrar nova Pessoa &#128516</a>
+            <div class="col-9 container">
+                <ul class="container list-group">
+                {% for pessoa in pessoas %}
+                      <li class="text-center list-group-item">
+                          <a href="{% url 'pessoa_edit' pessoa.id %}">{{ pessoa }}</a>
+                          <li class="text-center list-group-item">
+                            <a class="text-center">Nome: {{ pessoa.nome }}</a>
+                            <a class="text-center">CPF: {{ pessoa.cpf }}</a>
+                            <a class="text-center">E-mail: {{ pessoa.email }}</a>
+                          </li>
+                      </li>
+                      <br>
+                {% endfor %}
+                </ul>
+            </div>
+      {% elif tipo == 'clientes' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Clientes</h1>
+          <a href="{% url 'cliente_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Cliente &#128525</a>
+          <div class="col-9 container">
+              <ul class="container list-group">
+              {% for cliente in clientes %}
+                  <li class="text-center list-group-item">
+                      <a href="{% url 'cliente_edit' cliente.id %}">{{ cliente }}</a>
+                      <li class="text-center list-group-item">
+                          <a class="text-center">Telefone: {{ cliente.telefone }}</a>
+                          <a class="text-center">Nome: {{ cliente.pessoa.nome }}</a>
+                          <a class="text-center">CPF: {{ cliente.pessoa.cpf }}</a>
+                          <a class="text-center">E-mail: {{ cliente.pessoa.email }}</a>
+                          <a class="text-center">Endereco:</a>
+                          <a class="text-center">  Logradouro: {{ cliente.endereco.logradouro }}</a>
+                          <a class="text-center">  Numero: {{ cliente.endereco.numero }}</a>
+                          <a class="text-center">  Complemento: {{ cliente.endereco.complemento }}</a>
+                          <a class="text-center">  Cidade: {{ cliente.endereco.cidade }}</a>
+                      </li>
+                  </li>
+                  <br>
+              {% endfor %}
+              </ul>
+          </div>
+      {% elif tipo == 'hoteis' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Hotéis</h1>
+          <a href="{% url 'hotel_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Hotel &#128526</a>
+          <div class="col-9 container">
+              <ul class="container list-group"></ul>
+                {% for hotel in hoteis %}
+                  <li class="text-center list-group-item">
+                      <a href="{% url 'hotel_edit' hotel.id %}">{{ hotel }}</a>
+                      <li class="text-center list-group-item">
+                          <a class="text-center">Nome: {{ hotel.nome }}</a>
+                          <a class="text-center">Endereco:</a>
+                          <a class="text-center">  Logradouro: {{ hotel.endereco.logradouro }}</a>
+                          <a class="text-center">  Numero: {{ hotel.endereco.numero }}</a>
+                          <a class="text-center">  Complemento: {{ hotel.endereco.complemento }}</a>
+                          <a class="text-center">  Cidade: {{ hotel.endereco.cidade }}</a>
+                      </li>
+                  </li>
+                  <br>
+                {% endfor %}
+              </ul>
+          </div>
+      {% elif tipo == 'tipoQuartos' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Quartos</h1>
+          <a href="{% url 'tipoQuarto_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Tipo de Quarto &#128716</a>
+          <div class="col-9 container">
+              <ul class="container list-group">
+                {% for tipoQuarto in Quartos %}
+                  <li class="text-center list-group-item">
+                      <a href="{% url 'tipoQuarto_edit' tipoQuarto.id %}">{{ tipoQuarto }}</a>
+                      <li class="text-center list-group-item">
+                            <a class="text-center">Nome: {{ tipoQuarto.nome }}</a>
+                            <a class="list-group">Máximo de {{ tipoQuarto.max_ocupantes }} ocupante(s)</a>
+                            <a class="list-group">Banheiro Compartilhado: {{ quarto.num_camas_casal }}</a>
+                      </li>
+                  </li>
+                  <br>
+                {% endfor %}
+              </ul>
+          </div>
+      {% elif tipo == 'quartos' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Quartos</h1>
+          <a href="{% url 'quarto_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Quarto &#128716</a>
+          <div class="col-9 container">
+              <ul class="container list-group">
+                {% for quarto in quartos %}
+                  <li class="text-center list-group-item">
+                      <a href="{% url 'quarto_edit' quarto.id %}">{{ quarto }}</a>
+                      <li class="list-group-item">
+                            <a class="list-group">Hotel: {{ quarto.hotel }}</a>
+                            <a class="list-group">Tipo de Quarto: {{ quarto.tipo_quarto }}</a>
+                            <a class="list-group">Número do quarto: {{ quarto.num_quarto }}</a>
+                            <a class="list-group">{{ quarto.num_camas_solteiro }} cama(s) de solteiro</a>
+                            <a class="list-group">{{ quarto.num_camas_casal }} cama(s) de casal</a>
+                            <a class="list-group">Preço: {{ quarto.preco }}</a>
+                      </li>
+                  </li>
+                  <br>
+                {% endfor %}
+              </ul>
+          </div>
+      {% elif tipo == 'locadoras' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Locadoras</h1>
+          <a href="{% url 'locadora_create' %}" class="btn btn-secondary" id="menu">Cadastrar nova Locadora &#129311</a>
+          <div class="col-9 container">
+              <ul class="container list-group">
+                {% for locadora in locadoras %}
+                  <li class="text-center list-group-item">
+                      <a href="{% url 'locadora_edit' locadora.id %}">{{ locadora }}</a>
+                      <li class="text-center list-group-item">
+                          <a class="list-group">Nome: {{ locadora.nome }}</a>
+                          <a class="text-center">Endereco:</a>
+                          <a class="text-center">  Logradouro: {{ locadora.endereco.logradouro }}</a>
+                          <a class="text-center">  Complemento: {{ locadora.endereco.complemento }}</a>
+                          <a class="text-center">  Cidade: {{ locadora.endereco.cidade }}</a>
+                      </li>
+                  </li>
+                {% endfor %}
+              </ul>
+          </div>
+      {% elif tipo == 'carros' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Carro</h1>
+            <a href="{% url 'carro_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Carro &#128516</a>
+            <div class="col-9 container">
+                <ul class="container list-group">
+                {% for carro in carros %}
+                      <li class="text-center list-group-item">
+                          <a href="{% url 'carro_edit' carro.id %}">{{ carro }}</a>
+                          <li class="text-center list-group-item">
+                            <a class="text-center">Modelo: {{ carro.modelo }}</a>
+                            <a class="list-group">Capacidade para {{ carro.capacidade }} pessoas</a>
+                            <a class="list-group">Preço: {{ carro.preco }}</a>
+                            <a class="list-group">Placa: {{ carro.placa }}</a>
+                            <a class="list-group">Locadora: {{ carro.locadora }}</a>
+                          </li>
+                      </li>
+                      <br>
+                {% endfor %}
+                </ul>
+            </div>
+      {% elif tipo == 'reservaCarros' %}
+            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Carro</h1>
+              <a href="{% url 'reservaCarro_create' %}" class="btn btn-secondary" id="menu">Adicionar Reserva de Carro &#128516</a>
+              <div class="col-9 container">
+                  <ul class="container list-group">
+                  {% for reservaCarro in reservaCarros %}
+                        <li class="text-center list-group-item">
+                            <a href="{% url 'reservaCarro_edit' reservaCarro.id %}">{{ reservaCarro }}</a>
+                            <li class="list-group-item">
+                              <a class="list-group">Código: {{ reservaCarro.codigo }}</a>
+                              <a class="list-group">Data da Reserva: {{ reservaCarro.data_reserva }}</a>
+                              <a class="list-group">Data de Início: {{ reservaCarro.data_inicio }}</a>
+                              <a class="list-group">Data de Fim: {{ reservaCarro.data_fim }}</a>
+                              <a class="list-group">Carro:</a>
+                              <a class="list-group">  Modelo: {{ reservaCarro.carro.modelo }}</a>
+                              <a class="list-group">  Capacidade: {{ reservaCarro.carro.capacidade }}</a>
+                              <a class="list-group">  Preco: {{ reservaCarro.carro.preco }}</a>
+                              <a class="list-group">  Placa: {{ reservaCarro.carro.placa }}</a>
+                              <a class="list-group">  Locadora: {{ reservaCarro.carro.locadora }}</a>
+                            </li>
+                        </li>
+                        <br>
+                  {% endfor %}
+                  </ul>
+              </div>
+      {% elif tipo == 'reservaQuartos' %}
+            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Carro</h1>
+              <a href="{% url 'reservaQuarto_create' %}" class="btn btn-secondary" id="menu">Adicionar Reserva de Quarto &#128516</a>
+              <div class="col-9 container">
+                  <ul class="container list-group">
+                  {% for reservaQuarto in reservaQuartos %}
+                        <li class="text-center list-group-item">
+                            <a href="{% url 'reservaQuarto_edit' reservaQuarto.id %}">{{ reservaQuarto }}</a>
+                            <li class="list-group-item">
+                              <a class="list-group">Código: {{ reservaQuarto.codigo }}</a>
+                              <a class="list-group">Data da Reserva: {{ reservaQuarto.data_reserva }}</a>
+                              <a class="list-group">Data de Início: {{ reservaQuarto.data_inicio }}</a>
+                              <a class="list-group">Numero de Noites: {{ reservaQuarto.num_noites}}</a>
+                              <a class="list-group">Quarto:</a>
+                              <a class="list-group">  Hotel: {{ reservaQuarto.quarto.hotel }}</a>
+                              <a class="list-group">  Tipo de Quarto: {{ reservaQuarto.quarto.tipo_quarto }}</a>
+                              <a class="list-group">  Número do Quarto: {{ reservaQuarto.quarto.num_quarto }}</a>
+                              <a class="list-group">  {{ reservaQuarto.quarto.num_camas_solteiro }} cama(s) de solteiro</a>
+                              <a class="list-group">  {{ reservaQuarto.quarto.num_camas_casal }} cama(s) da casal</a>
+                              <a class="list-group">  Preco: {{ reservaQuarto.quarto.preco }}</a>
+                            </li>
+                        </li>
+                        <br>
+                {% endfor %}
+                </ul>
+              </div>
+      {% elif tipo == 'reservaPacotes' %}
+            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Pacote</h1>
+              <a href="{% url 'reservaPacote_create' %}" class="btn btn-secondary" id="menu">Adicionar Reserva de Pacote &#128516</a>
+              <div class="col-9 container">
+                  <ul class="container list-group">
+                  {% for reservaPacote in reservaPacotes %}
+                        <li class="text-center list-group-item">
+                            <a href="{% url 'reservaPacote_edit' reservaPacote.id %}">{{ reservaPacote }}</a>
+                            <li class="list-group-item">
+                              <a class="text-center">Reserva do Quarto:</a>
+                              <a class="list-group">  Código: {{ reservaPacote.reserva_quarto.codigo }}</a>
+                              <a class="list-group">  Data da Reserva: {{ reservaPacote.reserva_quarto.data_reserva }}</a>
+                              <a class="list-group">  Data de Início: {{ reservaPcote.reserva_quarto.data_inicio }}</a>
+                              <a class="list-group">  Numero de Noites: {{ reservaPacote.reserva_quarto.num_noites}}</a>
+                              <a class="list-group">  Quarto:  {{ reservaPacote.reserva_quarto.quarto }}</a>
+                              <a class="text-center">Reserva do Carro:</a>
+                              <a class="list-group">  Código: {{ reservaPacote.reserva_carro.codigo }}</a>
+                              <a class="list-group">  Data da Reserva: {{ reservaPacote.reserva_carro.data_reserva }}</a>
+                              <a class="list-group">  Data de Início: {{ reservaPacote.reserva_carro.data_inicio }}</a>
+                              <a class="list-group">  Data de Fim: {{ reservaPacote.reserva_carro.data_fim }}</a>
+                              <a class="list-group">  Carro: {{ reservaPacote.reserva_carro.carro }}</a>
+                            </li>
+                        </li>
+                        <br>
+                  {% endfor %}
+                  </ul>
+              </div>
+      {% else %}
+          <h1>Erro!</h1>
+      {% endif %}
+  </body>
+</html>
+{% endblock %}
