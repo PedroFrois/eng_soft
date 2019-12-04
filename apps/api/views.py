@@ -365,94 +365,6 @@ def locadora_delete(request, locadora_id):
     locadora.delete()
     return redirect('locadora_view')
 
-#---------------Recomendacoes
-def recomendacao(request):
-    context = dict()
-    context['tipo'] = 'recomendacoes'
-    return render(request, 'model.html', context=context)
-
-def recomendacao_create(request):
-    context = dict()
-    context['tipo'] = 'recomendacoes'
-    if request.method == 'POST':
-        form = RecomendacaoForm(request.POST)
-        if form.is_valid():
-            recomendacao = form.save()
-            return redirect('recomendacao_edit', recomendacao.id)
-    else:
-        form = RecomendacaoForm()
-        context['form'] = form
-    return render(request, 'create.html', context=context)
-
-def recomendacao_view(request):
-    context = dict()
-    context['recomendacoes'] = RecomendacaoHotel.objects.all()
-    context['tipo'] = 'recomendacoes'
-    return render(request, 'view.html', context=context)
-
-def recomendacao_edit(request, recomendacao_id):
-    context = dict()
-    recomendacao = RecomendacaoHotel.objects.get(id=recomendacao_id)
-    context['recomendacao'] = recomendacao
-    context['tipo'] = 'recomendacoes'
-    if request.method == 'POST':
-        form = RecomendacaoForm(request.POST, instance=recomendacao)
-        if form.is_valid():
-            form.save()
-            return redirect('recomendacao_view')
-    else:
-        form = RecomendacaoForm(initial=model_to_dict(recomendacao))
-        context['form'] = form
-    return render(request, 'edit.html', context=context)
-
-def recomendacao_delete(request, recomendacao_id):
-    recomendacao = RecomendacaoHotel.objects.get(id=recomendacao_id)
-    recomendacao.delete()
-    return redirect('recomendacao_view')
-#--------------------Pessoa
-def pessoa(request):
-    context = dict()
-    context['tipo'] = 'pessoas'
-    return render(request, 'model.html', context=context)
-
-def pessoa_create(request):
-    context = dict()
-    context['tipo'] = 'pessoas'
-    if request.method == 'POST':
-        form = PessoaForm(request.POST)
-        if form.is_valid():
-            pessoa = form.save()
-            return redirect('pessoa_edit', pessoa.id)
-    else:
-        form = PessoaForm()
-        context['form'] = form
-    return render(request, 'create.html', context=context)
-
-def pessoa_view(request):
-    context = dict()
-    context['pessoas'] = Pessoa.objects.all()
-    context['tipo'] = 'pessoas'
-    return render(request, 'view.html', context=context)
-
-def pessoa_edit(request, pessoa_id):
-    context = dict()
-    pessoa = Pessoa.objects.get(id=pessoa_id)
-    context['pessoa'] = pessoa
-    context['tipo'] = 'pessoas'
-    if request.method == 'POST':
-        form = PessoaForm(request.POST, instance=pessoa)
-        if form.is_valid():
-            form.save()
-            return redirect('pessoa_view')
-    else:
-        form = PessoaForm(initial=model_to_dict(pessoa))
-        context['form'] = form
-    return render(request, 'edit.html', context=context)
-
-def pessoa_delete(request, pessoa_id):
-    pessoa = Pessoa.objects.get(id=pessoa_id)
-    pessoa.delete()
-    return redirect('pessoa_view')
 #--------------------Carro
 def carro(request):
     context = dict()
@@ -466,9 +378,6 @@ def carro_create(request):
         form = CarroForm(request.POST)
         if form.is_valid():
             carro = form.save()
-            if carro.outro_bairro:
-                carro.bairro = carro.outro_bairro
-                carro.save()
             return redirect('carro_edit', carro.id)
     else:
         form = CarroForm()
@@ -489,10 +398,7 @@ def carro_edit(request, carro_id):
     if request.method == 'POST':
         form = CarroForm(request.POST, instance=carro)
         if form.is_valid():
-            carro = form.save()
-            if carro.outro_bairro:
-                carro.bairro = carro.outro_bairro
-                carro.save()
+            form.save()
             return redirect('carro_view')
     else:
         form = CarroForm(initial=model_to_dict(carro))
@@ -517,9 +423,6 @@ def reservaCarro_create(request):
         form = ReservaCarroForm(request.POST)
         if form.is_valid():
             reservaCarro = form.save()
-            if reservaCarro.outro_bairro:
-                reservaCarro.bairro = reservaCarro.outro_bairro
-                reservaCarro.save()
             return redirect('reservaCarro_edit', reservaCarro.id)
     else:
         form = ReservaCarroForm()
@@ -540,10 +443,7 @@ def reservaCarro_edit(request, reservaCarro_id):
     if request.method == 'POST':
         form = ReservaCarroForm(request.POST, instance=reservaCarro)
         if form.is_valid():
-            reservaCarro = form.save()
-            if reservaCarro.outro_bairro:
-                reservaCarro.bairro = reservaCarro.outro_bairro
-                reservaCarro.save()
+            form.save()
             return redirect('reservaCarro_view')
     else:
         form = ReservaCarroForm(initial=model_to_dict(reservaCarro))
@@ -568,9 +468,6 @@ def reservaQuarto_create(request):
         form = ReservaQuartoForm(request.POST)
         if form.is_valid():
             reservaQuarto = form.save()
-            if reservaQuarto.outro_bairro:
-                reservaQuarto.bairro = reservaQuarto.outro_bairro
-                reservaQuarto.save()
             return redirect('reservaQuarto_edit', reservaQuarto.id)
     else:
         form = ReservaQuartoForm()
@@ -591,10 +488,7 @@ def reservaQuarto_edit(request, reservaQuarto_id):
     if request.method == 'POST':
         form = ReservaQuartoForm(request.POST, instance=reservaQuarto)
         if form.is_valid():
-            reservaQuarto = form.save()
-            if reservaQuarto.outro_bairro:
-                reservaQuarto.bairro = reservaQuarto.outro_bairro
-                reservaQuarto.save()
+            form.save()
             return redirect('reservaQuarto_view')
     else:
         form = ReservaQuartoForm(initial=model_to_dict(reservaQuarto))
@@ -619,9 +513,6 @@ def reservaPacote_create(request):
         form = ReservaPacoteForm(request.POST)
         if form.is_valid():
             reservaPacote = form.save()
-            if reservaPacote.outro_bairro:
-                reservaPacote.bairro = reservaPacote.outro_bairro
-                reservaPacote.save()
             return redirect('reservaPacote_edit', reservaPacote.id)
     else:
         form = ReservaPacoteForm()
@@ -642,10 +533,7 @@ def reservaPacote_edit(request, reservaPacote_id):
     if request.method == 'POST':
         form = ReservaPacoteForm(request.POST, instance=reservaPacote)
         if form.is_valid():
-            reservaPacote = form.save()
-            if reservaPacote.outro_bairro:
-                reservaPacote.bairro = reservaPacote.outro_bairro
-                reservaPacote.save()
+            form.save()
             return redirect('reservaPacote_view')
     else:
         form = ReservaPacoteForm(initial=model_to_dict(reservaPacote))

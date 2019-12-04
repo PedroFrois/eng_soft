@@ -8,6 +8,8 @@
           Pessoas
       {% elif tipo == 'clientes' %}
           Clientes
+      {% elif tipo == 'enderecos' %}
+          Enderecos
       {% elif tipo == 'hoteis' %}
           Hoteis
       {% elif tipo == 'tipoQuartos' %}
@@ -43,10 +45,10 @@
                 {% for pessoa in pessoas %}
                       <li class="text-center list-group-item">
                           <a href="{% url 'pessoa_edit' pessoa.id %}">{{ pessoa }}</a>
-                          <li class="text-center list-group-item">
-                            <a class="text-center">Nome: {{ pessoa.nome }}</a>
-                            <a class="text-center">CPF: {{ pessoa.cpf }}</a>
-                            <a class="text-center">E-mail: {{ pessoa.email }}</a>
+                          <li class="list-group-item">
+                            <a class="list-group">Nome: {{ pessoa.nome }}</a>
+                            <a class="list-group">CPF: {{ pessoa.cpf }}</a>
+                            <a class="list-group">E-mail: {{ pessoa.email }}</a>
                           </li>
                       </li>
                       <br>
@@ -61,16 +63,35 @@
               {% for cliente in clientes %}
                   <li class="text-center list-group-item">
                       <a href="{% url 'cliente_edit' cliente.id %}">{{ cliente }}</a>
-                      <li class="text-center list-group-item">
-                          <a class="text-center">Telefone: {{ cliente.telefone }}</a>
-                          <a class="text-center">Nome: {{ cliente.pessoa.nome }}</a>
-                          <a class="text-center">CPF: {{ cliente.pessoa.cpf }}</a>
-                          <a class="text-center">E-mail: {{ cliente.pessoa.email }}</a>
-                          <a class="text-center">Endereco:</a>
-                          <a class="text-center">  Logradouro: {{ cliente.endereco.logradouro }}</a>
-                          <a class="text-center">  Numero: {{ cliente.endereco.numero }}</a>
-                          <a class="text-center">  Complemento: {{ cliente.endereco.complemento }}</a>
+                      <li class="list-group-item">
+                          <a class="list-group">Telefone: {{ cliente.telefone }}</a>
+                          <a class="list-group">Nome: {{ cliente.pessoa.nome }}</a>
+                          <a class="list-group">CPF: {{ cliente.pessoa.cpf }}</a>
+                          <a class="list-group">E-mail: {{ cliente.pessoa.email }}</a>
+                          <a class="list-group">Endereco:</a>
+                          <a class="list-group">  Logradouro: {{ cliente.endereco.logradouro }}</a>
+                          <a class="list-group">  Numero: {{ cliente.endereco.numero }}</a>
+                          <a class="list-group">  Complemento: {{ cliente.endereco.complemento }}</a>
                           <a class="text-center">  Cidade: {{ cliente.endereco.cidade }}</a>
+                      </li>
+                  </li>
+                  <br>
+              {% endfor %}
+              </ul>
+          </div>
+      {% elif tipo == 'enderecos' %}
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Enderecos</h1>
+          <a href="{% url 'endereco_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Endereco &#128525</a>
+          <div class="col-9 container">
+              <ul class="container list-group">
+              {% for endereco in enderecos %}
+                  <li class="text-center list-group-item">
+                      <a href="{% url 'endereco_edit' endereco.id %}">{{ endereco }}</a>
+                      <li class="list-group-item">
+                          <a class="list-group">  Logradouro: {{ endereco.logradouro }}</a>
+                          <a class="list-group">  Numero: {{ endereco.numero }}</a>
+                          <a class="list-group">  Complemento: {{ endereco.complemento }}</a>
+                          <a class="list-group">  Cidade: {{ endereco.cidade }}</a>
                       </li>
                   </li>
                   <br>
@@ -85,13 +106,13 @@
                 {% for hotel in hoteis %}
                   <li class="text-center list-group-item">
                       <a href="{% url 'hotel_edit' hotel.id %}">{{ hotel }}</a>
-                      <li class="text-center list-group-item">
-                          <a class="text-center">Nome: {{ hotel.nome }}</a>
-                          <a class="text-center">Endereco:</a>
-                          <a class="text-center">  Logradouro: {{ hotel.endereco.logradouro }}</a>
-                          <a class="text-center">  Numero: {{ hotel.endereco.numero }}</a>
-                          <a class="text-center">  Complemento: {{ hotel.endereco.complemento }}</a>
-                          <a class="text-center">  Cidade: {{ hotel.endereco.cidade }}</a>
+                      <li class="list-group-item">
+                          <a class="list-group">Nome: {{ hotel.nome }}</a>
+                          <a class="list-group">Endereco:</a>
+                          <a class="list-group">  Logradouro: {{ hotel.endereco.logradouro }}</a>
+                          <a class="list-group">  Numero: {{ hotel.endereco.numero }}</a>
+                          <a class="list-group">  Complemento: {{ hotel.endereco.complemento }}</a>
+                          <a class="list-group">  Cidade: {{ hotel.endereco.cidade }}</a>
                       </li>
                   </li>
                   <br>
@@ -99,15 +120,15 @@
               </ul>
           </div>
       {% elif tipo == 'tipoQuartos' %}
-          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Quartos</h1>
+          <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Tipos de Quartos</h1>
           <a href="{% url 'tipoQuarto_create' %}" class="btn btn-secondary" id="menu">Cadastrar novo Tipo de Quarto &#128716</a>
           <div class="col-9 container">
               <ul class="container list-group">
-                {% for tipoQuarto in Quartos %}
+                {% for tipoQuarto in tipoQuartos %}
                   <li class="text-center list-group-item">
                       <a href="{% url 'tipoQuarto_edit' tipoQuarto.id %}">{{ tipoQuarto }}</a>
-                      <li class="text-center list-group-item">
-                            <a class="text-center">Nome: {{ tipoQuarto.nome }}</a>
+                      <li class="list-group-item">
+                            <a class="list-group">Nome: {{ tipoQuarto.nome }}</a>
                             <a class="list-group">Máximo de {{ tipoQuarto.max_ocupantes }} ocupante(s)</a>
                             <a class="list-group">Banheiro Compartilhado: {{ quarto.num_camas_casal }}</a>
                       </li>
@@ -145,12 +166,12 @@
                 {% for locadora in locadoras %}
                   <li class="text-center list-group-item">
                       <a href="{% url 'locadora_edit' locadora.id %}">{{ locadora }}</a>
-                      <li class="text-center list-group-item">
+                      <li class="list-group-item">
                           <a class="list-group">Nome: {{ locadora.nome }}</a>
-                          <a class="text-center">Endereco:</a>
-                          <a class="text-center">  Logradouro: {{ locadora.endereco.logradouro }}</a>
-                          <a class="text-center">  Complemento: {{ locadora.endereco.complemento }}</a>
-                          <a class="text-center">  Cidade: {{ locadora.endereco.cidade }}</a>
+                          <a class="list-group">Endereco:</a>
+                          <a class="list-group">  Logradouro: {{ locadora.endereco.logradouro }}</a>
+                          <a class="list-group">  Complemento: {{ locadora.endereco.complemento }}</a>
+                          <a class="list-group">  Cidade: {{ locadora.endereco.cidade }}</a>
                       </li>
                   </li>
                 {% endfor %}
@@ -164,8 +185,8 @@
                 {% for carro in carros %}
                       <li class="text-center list-group-item">
                           <a href="{% url 'carro_edit' carro.id %}">{{ carro }}</a>
-                          <li class="text-center list-group-item">
-                            <a class="text-center">Modelo: {{ carro.modelo }}</a>
+                          <li class="list-group-item">
+                            <a class="list-group">Modelo: {{ carro.modelo }}</a>
                             <a class="list-group">Capacidade para {{ carro.capacidade }} pessoas</a>
                             <a class="list-group">Preço: {{ carro.preco }}</a>
                             <a class="list-group">Placa: {{ carro.placa }}</a>
@@ -202,7 +223,7 @@
                   </ul>
               </div>
       {% elif tipo == 'reservaQuartos' %}
-            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Carro</h1>
+            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Quartos</h1>
               <a href="{% url 'reservaQuarto_create' %}" class="btn btn-secondary" id="menu">Adicionar Reserva de Quarto &#128516</a>
               <div class="col-9 container">
                   <ul class="container list-group">
@@ -228,7 +249,7 @@
                 </ul>
               </div>
       {% elif tipo == 'reservaPacotes' %}
-            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Pacote</h1>
+            <h1 class="text-center container col-6 mb-2 bg-light text-dark shadow-sm p-3 mb-5 bg-white rounded">Reservas de Pacotes</h1>
               <a href="{% url 'reservaPacote_create' %}" class="btn btn-secondary" id="menu">Adicionar Reserva de Pacote &#128516</a>
               <div class="col-9 container">
                   <ul class="container list-group">

@@ -9,6 +9,8 @@
           Pessoas
       {% elif tipo == 'clientes' %}
           Clientes
+      {% elif tipo == 'enderecos' %}
+          Enderecos
       {% elif tipo == 'hoteis' %}
           Hoteis
       {% elif tipo == 'tipoQuartos' %}
@@ -43,12 +45,23 @@
   {% elif tipo == 'clientes' %}
     
     <div class="container">
-      <h3 class="text-center display-6">Cliente</h3>
+      <h3 class="text-center display-6">Clientes</h3>
       <p class="text-center">Gerencie aqui os Clientes do Sistema</p>
     </div>
     <ul class="container list-group list-group-horizontal-lg">
         <a class="btn btn-outline-success btn-custom" href="{% url 'cliente_create' %}">Cadastrar Cliente</a><br>
         <a class="btn btn-outline-info" href="{% url 'cliente_view' %}">Listar Clientes</a>
+    </ul>
+  
+  {% elif tipo == 'enderecos' %}
+    
+    <div class="container">
+      <h3 class="text-center display-6">Enderecos</h3>
+      <p class="text-center">Gerencie aqui os Enderecos do Sistema</p>
+    </div>
+    <ul class="container list-group list-group-horizontal-lg">
+        <a class="btn btn-outline-success btn-custom" href="{% url 'endereco_create' %}">Cadastrar Endereco</a><br>
+        <a class="btn btn-outline-info" href="{% url 'endereco_view' %}">Listar Enderecos</a>
     </ul>
 
   {% elif tipo == 'hoteis' %}

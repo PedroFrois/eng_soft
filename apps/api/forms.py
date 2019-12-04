@@ -74,11 +74,4 @@ class ReservaPacoteForm(forms.ModelForm):
         model = ReservaPacote
         fields = '__all__'
 
-# #-----------Apartamento
-# class ApartamentoForm(forms.ModelForm):
-#     class Meta:
-#         model = Apartamento
-#         fields = '__all__'
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['outro_bairro'].widget.attrs.update({'class': 'gone'})
+

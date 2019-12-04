@@ -14,6 +14,8 @@
             Pessoas
         {% elif tipo == 'clientes' %}
             Clientes
+        {% elif tipo == 'enderecos' %}
+            Enderecos
         {% elif tipo == 'hoteis' %}
             Hoteis
         {% elif tipo == 'tipoQuartos' %}
@@ -42,6 +44,8 @@
             Nova Pessoa
         {% elif tipo == 'clientes' %}
             Novo Cliente
+        {% elif tipo == 'enderecos' %}
+            Novo Endereco
         {% elif tipo == 'hoteis' %}
             Novo Hotel
         {% elif tipo == 'tipoQuartos' %}
@@ -72,21 +76,5 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-  <!-- <script>
-        var conditional_fields = $("div.outro_bairro");
-        conditional_fields.hide();
-            
-        $("#id_bairro").change(function() {
-            // console.log($(this).children("option:selected").val());
-            if ($(this).children("option:selected").val() == 'Outros') {
-                // console.log('entrei')
-                document.getElementById("id_outro_bairro").classList.remove('gone');
-                // conditional_fields.hide();
-            } else {
-                document.getElementById("id_outro_bairro").classList.add('gone');
-                // conditional_fields.show();
-            }
-        });
-  </script> -->
 </html>
 {% endblock %}

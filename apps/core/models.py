@@ -105,7 +105,7 @@ class ReservaCarro(models.Model):
 	carro			= models.ForeignKey('Carro', on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.codigo
+		return str(self.codigo)
 
 
 class ReservaQuarto(models.Model):
@@ -116,7 +116,7 @@ class ReservaQuarto(models.Model):
 	quarto			= models.ForeignKey('Quarto', on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.codigo
+		return str(self.codigo)
 
 
 class ReservaPacote(models.Model):
@@ -124,4 +124,4 @@ class ReservaPacote(models.Model):
 	reserva_quarto	= models.OneToOneField(verbose_name='Reserva do Quarto', to=ReservaQuarto,on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.codigo
+		return str(self.codigo)

@@ -14,6 +14,8 @@
             Pessoas
         {% elif tipo == 'clientes' %}
             Clientes
+        {% elif tipo == 'enderecos' %}
+            Enderecos
         {% elif tipo == 'hoteis' %}
             Hoteis
         {% elif tipo == 'tipoQuartos' %}
@@ -42,6 +44,8 @@
             Pessoas
         {% elif tipo == 'clientes' %}
             Clientes
+        {% elif tipo == 'enderecos' %}
+            Enderecos
         {% elif tipo == 'hoteis' %}
             Hoteis
         {% elif tipo == 'tipoQuartos' %}
@@ -71,6 +75,8 @@
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'pessoa_delete' pessoa.id %}" >Deletar Pessoa</a>
         {% elif tipo == 'clientes' %}
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'cliente_delete' cliente.id %}" >Deletar Cliente</a>
+        {% elif tipo == 'enderecos' %}
+            <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'endereco_delete' endereco.id %}" >Deletar Endereco</a>
         {% elif tipo == 'hoteis' %}
             <a class="container btn btn-outline-danger" onclick="return confirm('Tem certeza disso?')" href="{% url 'hotel_delete' hotel.id %}" >Deletar Hotel</a>
         {% elif tipo == 'tipoQuartos' %}
